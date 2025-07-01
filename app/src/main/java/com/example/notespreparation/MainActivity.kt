@@ -1,31 +1,49 @@
 package com.example.notespreparation
 
 import android.os.Bundle
-import android.webkit.WebView
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.webkit.WebViewClient
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var webView: WebView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        webView = findViewById(R.id.webview)
-        // WebViewClient allows you to handle
-        // onPageFinished and override Url loading.
-        webView.webViewClient = WebViewClient()
 
-        // this will load the url of the website
-        webView.loadUrl("https://nm-aist.ac.tz/")
+        val listView: ListView = findViewById(R.id.listview)
 
-        // this will enable the javascript settings, it can also allow xss vulnerabilities
-        webView.settings.javaScriptEnabled = true
 
-        // if you want to enable zoom feature
-        webView.settings.setSupportZoom(true)
+        val dataItems = arrayOf(
+            "Item 1: Learn Kotlin",
+            "Item 2: Build Android Apps",
+            "Item 3: Explore UI Components",
+            "Item 4: Understand Layouts",
+            "Item 5: Handle User Input",
+            "Item 6: Work with Data",
+            "Item 7: Implement Navigation",
+            "Item 8: Test Your App",
+            "Item 9: Deploy to Play Store",
+            "Item 10: Continuously Learn"
+        )
+
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            dataItems
+        )
+
+
+        listView.adapter = adapter
+//
+//        // 4. (Optional) Set an item click listener
+//        // This allows you to perform an action when a user taps on an item in the list.
+//        listView.setOnItemClickListener { parent, view, position, id ->
+//            val selectedItem = parent.getItemAtPosition(position) as String
+//            Toast.makeText(this, "You selected: $selectedItem", Toast.LENGTH_SHORT).show()
+//        }
     }
 }
